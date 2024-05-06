@@ -28917,9 +28917,20 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _react = _interopRequireDefault(require("react"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _react = _interopRequireWildcard(require("react"));
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var Header = function Header() {
+  var _useState = (0, _react.useState)("login"),
+    _useState2 = _slicedToArray(_useState, 2),
+    Login = _useState2[0],
+    setLogin = _useState2[1];
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "header"
   }, /*#__PURE__*/_react.default.createElement("img", {
@@ -28928,7 +28939,12 @@ var Header = function Header() {
     src: "https://img.freepik.com/free-vector/delivery-service-illustrated_23-2148505081.jpg?w=740&t=st=1714460265~exp=1714460865~hmac=e5f1e31895fefe44d58dcf7296e3c371d08c3605d90e21789179a5f340a86a48"
   }), /*#__PURE__*/_react.default.createElement("div", {
     className: "list"
-  }, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, "Home"), /*#__PURE__*/_react.default.createElement("li", null, "About us "), /*#__PURE__*/_react.default.createElement("li", null, "Contact"), /*#__PURE__*/_react.default.createElement("li", null, "Cart"))));
+  }, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, "Home"), /*#__PURE__*/_react.default.createElement("li", null, "About us "), /*#__PURE__*/_react.default.createElement("li", null, "Contact"), /*#__PURE__*/_react.default.createElement("li", null, "Cart"), /*#__PURE__*/_react.default.createElement("button", {
+    className: "header-login",
+    onClick: function onClick() {
+      Login === "login" ? setLogin("logout") : setLogin("login");
+    }
+  }, Login))));
 };
 var _default = exports.default = Header;
 },{"react":"node_modules/react/index.js"}],"src/utils/constants.js":[function(require,module,exports) {
@@ -28938,8 +28954,40 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.CDN_URL = void 0;
-var CDN_URL = exports.CDN_URL = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Chicken_briyani.jpg/450px-Chicken_briyani.jpg?20210329122713";
+//export const CDN_URL = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Chicken_briyani.jpg/450px-Chicken_briyani.jpg?20210329122713"
+var CDN_URL = exports.CDN_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/";
 },{}],"src/Components/Card.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Card = void 0;
+var _react = _interopRequireDefault(require("react"));
+var _constants = require("../utils/constants");
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+// if you are using named export 
+
+var Card = exports.Card = function Card(props) {
+  var isOpen = props.isOpen,
+    locality = props.locality,
+    name = props.name,
+    cuisines = props.cuisines,
+    cloudinaryImageId = props.cloudinaryImageId,
+    avgRating = props.avgRating,
+    costForTwo = props.costForTwo;
+  // console.log(props);
+
+  // instead of writing resData.data.name we can create this   
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "card"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    className: "card-photo",
+    alt: "card-photo",
+    src: _constants.CDN_URL + cloudinaryImageId
+  }), /*#__PURE__*/_react.default.createElement("h2", null, name), /*#__PURE__*/_react.default.createElement("h4", null, "Location :- ", locality), /*#__PURE__*/_react.default.createElement("h4", null, cuisines.join(' , ')), /*#__PURE__*/_react.default.createElement("h4", null, avgRating), /*#__PURE__*/_react.default.createElement("h4", null, costForTwo));
+};
+},{"react":"node_modules/react/index.js","../utils/constants":"src/utils/constants.js"}],"src/Components/Shimmer.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28947,1687 +28995,38 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
-var _constants = require("../utils/constants");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-// if you are using named export 
-
-var Card = function Card(props) {
-  var resData = props.resData;
-  var _resData$data = resData.data,
-    name = _resData$data.name,
-    cuisines = _resData$data.cuisines,
-    avgRating = _resData$data.avgRating,
-    deliveryTime = _resData$data.deliveryTime;
-  // instead of writing resData.data.name we can create this   
+var Shimmer = function Shimmer() {
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "card"
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    className: "card-photo",
-    alt: "card-photo",
-    src: _constants.CDN_URL
-  }), /*#__PURE__*/_react.default.createElement("h3", null, name), /*#__PURE__*/_react.default.createElement("h4", null, cuisines.join(',')), /*#__PURE__*/_react.default.createElement("h4", null, avgRating), /*#__PURE__*/_react.default.createElement("h4", null, deliveryTime));
+    className: "shimmer-container"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "shimmer-card"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "shimmer-card"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "shimmer-card"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "shimmer-card"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "shimmer-card"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "shimmer-card"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "shimmer-card"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "shimmer-card"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "shimmer-card"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "shimmer-card"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "shimmer-card"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "shimmer-card"
+  }));
 };
-var _default = exports.default = Card;
-},{"react":"node_modules/react/index.js","../utils/constants":"src/utils/constants.js"}],"src/utils/mock.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var restaurantList = [{
-  type: "restaurant",
-  data: {
-    type: "F",
-    id: "74453",
-    name: "Domino's Pizza",
-    uuid: "87727dbd-7f2b-4857-9763-359624165845",
-    city: "21",
-    area: "Athwa",
-    totalRatingsString: "1000+ ratings",
-    cloudinaryImageId: "bz9zkh2aqywjhpankb07",
-    cuisines: ["Pizzas"],
-    tags: [],
-    costForTwo: 40000,
-    costForTwoString: "₹400 FOR TWO",
-    deliveryTime: 45,
-    minDeliveryTime: 45,
-    maxDeliveryTime: 45,
-    slaString: "45 MINS",
-    lastMileTravel: 0,
-    slugs: {
-      restaurant: "dominos-pizza-majura-nondh-test_surat",
-      city: "surat"
-    },
-    cityState: "21",
-    address: "Shop 32 To 35, Sheetal Shopping Square,Near Lb Turning Point, Bhatar Road,MAJURA NONDH, Surat,GUJARAT-395001",
-    locality: "Bhatar Road",
-    parentId: 2456,
-    unserviceable: false,
-    veg: true,
-    select: false,
-    favorite: false,
-    tradeCampaignHeaders: [],
-    aggregatedDiscountInfo: {
-      header: "FREE DELIVERY",
-      shortDescriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    aggregatedDiscountInfoV2: {
-      header: "",
-      shortDescriptionList: [{
-        meta: "Free Delivery",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    chain: [],
-    feeDetails: {
-      fees: [],
-      totalFees: 0,
-      message: "",
-      title: "",
-      amount: "",
-      icon: ""
-    },
-    availability: {
-      opened: true,
-      nextOpenMessage: "",
-      nextCloseMessage: ""
-    },
-    longDistanceEnabled: 0,
-    rainMode: "NONE",
-    thirdPartyAddress: false,
-    thirdPartyVendor: "",
-    adTrackingID: "",
-    badges: {
-      imageBased: [],
-      textBased: [],
-      textExtendedBadges: []
-    },
-    lastMileTravelString: "2.1 kms",
-    hasSurge: false,
-    sla: {
-      restaurantId: "74453",
-      deliveryTime: 45,
-      minDeliveryTime: 45,
-      maxDeliveryTime: 45,
-      lastMileTravel: 0,
-      lastMileDistance: 0,
-      serviceability: "SERVICEABLE",
-      rainMode: "NONE",
-      longDistance: "NOT_LONG_DISTANCE",
-      preferentialService: false,
-      iconType: "EMPTY"
-    },
-    promoted: false,
-    avgRating: "4.0",
-    totalRatings: 1000,
-    new: false
-  },
-  subtype: "basic"
-}, {
-  type: "restaurant",
-  data: {
-    type: "F",
-    id: "410476",
-    name: "The Brooklyn Creamery - Healthy Ice Cream",
-    uuid: "82e23b48-b6bd-4ee0-9746-06737ec062b0",
-    city: "21",
-    area: "althan bhatar",
-    totalRatingsString: "100+ ratings",
-    cloudinaryImageId: "ldtibwymvzehvmdwl8la",
-    cuisines: ["Desserts", "Ice Cream", "Healthy Food"],
-    tags: [],
-    costForTwo: 20000,
-    costForTwoString: "₹200 FOR TWO",
-    deliveryTime: 31,
-    minDeliveryTime: 30,
-    maxDeliveryTime: 40,
-    slaString: "30-40 MINS",
-    lastMileTravel: 6.300000190734863,
-    slugs: {
-      restaurant: "the-brooklyn-creamery-low-cal-ice-cream-adajan-fc-adajan",
-      city: "surat"
-    },
-    cityState: "21",
-    address: "C paiki, Chalta no. 23, Guru Ashish Building, Ground Floor, Opp Kotyark Nagar, Rander Road, Surat 395005",
-    locality: "Adajan FC",
-    parentId: 236673,
-    unserviceable: true,
-    veg: true,
-    select: false,
-    favorite: false,
-    tradeCampaignHeaders: [],
-    aggregatedDiscountInfo: {
-      header: "FREE DELIVERY",
-      shortDescriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    aggregatedDiscountInfoV2: {
-      header: "",
-      shortDescriptionList: [{
-        meta: "Free Delivery",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    chain: [],
-    feeDetails: {
-      fees: [],
-      totalFees: 0,
-      message: "",
-      title: "",
-      amount: "",
-      icon: ""
-    },
-    availability: {
-      opened: true,
-      nextOpenMessage: "",
-      nextCloseMessage: ""
-    },
-    longDistanceEnabled: 0,
-    rainMode: "NONE",
-    thirdPartyAddress: false,
-    thirdPartyVendor: "",
-    adTrackingID: "",
-    badges: {
-      imageBased: [],
-      textBased: [],
-      textExtendedBadges: []
-    },
-    lastMileTravelString: "6.3 kms",
-    hasSurge: false,
-    sla: {
-      restaurantId: "410476",
-      deliveryTime: 31,
-      minDeliveryTime: 30,
-      maxDeliveryTime: 40,
-      lastMileTravel: 6.300000190734863,
-      lastMileDistance: 0,
-      serviceability: "SERVICEABLE_WITH_BANNER",
-      rainMode: "NONE",
-      longDistance: "NOT_LONG_DISTANCE",
-      preferentialService: false,
-      iconType: "EMPTY"
-    },
-    promoted: false,
-    avgRating: "4.4",
-    totalRatings: 100,
-    new: false
-  },
-  subtype: "basic"
-}, {
-  type: "restaurant",
-  data: {
-    type: "F",
-    id: "81094",
-    name: "Richie Rich Juices & Shakes",
-    uuid: "40b0b55b-e9af-43e7-aeae-be1b012d0b1d",
-    city: "21",
-    area: "Athwa",
-    totalRatingsString: "500+ ratings",
-    cloudinaryImageId: "nyp7yrzwc1dc2xqfkydk",
-    cuisines: ["Ice Cream"],
-    tags: [],
-    costForTwo: 25000,
-    costForTwoString: "₹250 FOR TWO",
-    deliveryTime: 30,
-    minDeliveryTime: 30,
-    maxDeliveryTime: 40,
-    slaString: "30-40 MINS",
-    lastMileTravel: 5.599999904632568,
-    slugs: {
-      restaurant: "juices-shakes-by-richie-rich-athwa-athwa",
-      city: "surat"
-    },
-    cityState: "21",
-    address: "Richie Rich Building , Opposite Golden Square Complex, Parle Point, Athwa, Surat",
-    locality: "Parle Point",
-    parentId: 771,
-    unserviceable: true,
-    veg: false,
-    select: false,
-    favorite: false,
-    tradeCampaignHeaders: [],
-    aggregatedDiscountInfo: {
-      header: "FREE DELIVERY",
-      shortDescriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    aggregatedDiscountInfoV2: {
-      header: "",
-      shortDescriptionList: [{
-        meta: "Free Delivery",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    chain: [],
-    feeDetails: {
-      fees: [],
-      totalFees: 0,
-      message: "",
-      title: "",
-      amount: "",
-      icon: ""
-    },
-    availability: {
-      opened: true,
-      nextOpenMessage: "",
-      nextCloseMessage: ""
-    },
-    longDistanceEnabled: 0,
-    rainMode: "NONE",
-    thirdPartyAddress: false,
-    thirdPartyVendor: "",
-    adTrackingID: "",
-    badges: {
-      imageBased: [],
-      textBased: [],
-      textExtendedBadges: []
-    },
-    lastMileTravelString: "5.5 kms",
-    hasSurge: false,
-    sla: {
-      restaurantId: "81094",
-      deliveryTime: 30,
-      minDeliveryTime: 30,
-      maxDeliveryTime: 40,
-      lastMileTravel: 5.599999904632568,
-      lastMileDistance: 0,
-      serviceability: "SERVICEABLE_WITH_BANNER",
-      rainMode: "NONE",
-      longDistance: "NOT_LONG_DISTANCE",
-      preferentialService: false,
-      iconType: "EMPTY"
-    },
-    promoted: false,
-    avgRating: "3.9",
-    totalRatings: 500,
-    new: false
-  },
-  subtype: "basic"
-}, {
-  type: "restaurant",
-  data: {
-    type: "F",
-    id: "311443",
-    name: "Siddhi Icecream & Thick Shake",
-    uuid: "1ca3e8c2-e5da-4b59-8f7e-868991cb40b7",
-    city: "21",
-    area: "Nanpura",
-    totalRatingsString: "100+ ratings",
-    cloudinaryImageId: "spd3y5gok3vvwqulgmda",
-    cuisines: ["Ice Cream", "Juices", "Desserts", "Beverages"],
-    tags: [],
-    costForTwo: 20000,
-    costForTwoString: "₹200 FOR TWO",
-    deliveryTime: 30,
-    minDeliveryTime: 25,
-    maxDeliveryTime: 35,
-    slaString: "25-35 MINS",
-    lastMileTravel: 3,
-    slugs: {
-      restaurant: "siddhi-icecream-athwa-athwa",
-      city: "surat"
-    },
-    cityState: "21",
-    address: "siddhi icecream, Kadampally Society, Timaliawad, Nanpura, Surat, Gujarat, India",
-    locality: "Athwa",
-    parentId: 387846,
-    unserviceable: true,
-    veg: false,
-    select: false,
-    favorite: false,
-    tradeCampaignHeaders: [],
-    aggregatedDiscountInfo: {
-      header: "FREE DELIVERY",
-      shortDescriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    aggregatedDiscountInfoV2: {
-      header: "",
-      shortDescriptionList: [{
-        meta: "Free Delivery",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    chain: [],
-    feeDetails: {
-      fees: [],
-      totalFees: 0,
-      message: "",
-      title: "",
-      amount: "",
-      icon: ""
-    },
-    availability: {
-      opened: true,
-      nextOpenMessage: "",
-      nextCloseMessage: ""
-    },
-    longDistanceEnabled: 0,
-    rainMode: "NONE",
-    thirdPartyAddress: false,
-    thirdPartyVendor: "",
-    adTrackingID: "",
-    badges: {
-      imageBased: [],
-      textBased: [],
-      textExtendedBadges: []
-    },
-    lastMileTravelString: "3 kms",
-    hasSurge: false,
-    sla: {
-      restaurantId: "311443",
-      deliveryTime: 30,
-      minDeliveryTime: 25,
-      maxDeliveryTime: 35,
-      lastMileTravel: 3,
-      lastMileDistance: 0,
-      serviceability: "SERVICEABLE_WITH_BANNER",
-      rainMode: "NONE",
-      longDistance: "NOT_LONG_DISTANCE",
-      preferentialService: false,
-      iconType: "EMPTY"
-    },
-    promoted: false,
-    avgRating: "4.5",
-    totalRatings: 100,
-    new: false
-  },
-  subtype: "basic"
-}, {
-  type: "restaurant",
-  data: {
-    type: "F",
-    id: "307070",
-    name: "Pizza Pie",
-    uuid: "68598bcb-7460-4466-a8b2-113158c6cf8c",
-    city: "21",
-    area: "Nanpura",
-    totalRatingsString: "50+ ratings",
-    cloudinaryImageId: "bvr70adr30ejyr5ua79k",
-    cuisines: ["Pizzas"],
-    tags: [],
-    costForTwo: 30000,
-    costForTwoString: "₹300 FOR TWO",
-    deliveryTime: 37,
-    minDeliveryTime: 35,
-    maxDeliveryTime: 45,
-    slaString: "35-45 MINS",
-    lastMileTravel: 4,
-    slugs: {
-      restaurant: "pizza-pie-athwa-athwa",
-      city: "surat"
-    },
-    cityState: "21",
-    address: "1/704 Sarang building, Nanpura New Rd, opposite river palace, near Ramji Mandir, Nanpura, Surat, Gujarat",
-    locality: "Nanpura",
-    parentId: 158854,
-    unserviceable: true,
-    veg: false,
-    select: false,
-    favorite: false,
-    tradeCampaignHeaders: [],
-    aggregatedDiscountInfo: {
-      header: "FREE DELIVERY",
-      shortDescriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    aggregatedDiscountInfoV2: {
-      header: "",
-      shortDescriptionList: [{
-        meta: "Free Delivery",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    chain: [],
-    feeDetails: {
-      fees: [],
-      totalFees: 0,
-      message: "",
-      title: "",
-      amount: "",
-      icon: ""
-    },
-    availability: {
-      opened: true,
-      nextOpenMessage: "",
-      nextCloseMessage: ""
-    },
-    longDistanceEnabled: 0,
-    rainMode: "NONE",
-    thirdPartyAddress: false,
-    thirdPartyVendor: "",
-    adTrackingID: "",
-    badges: {
-      imageBased: [],
-      textBased: [],
-      textExtendedBadges: []
-    },
-    lastMileTravelString: "4 kms",
-    hasSurge: false,
-    sla: {
-      restaurantId: "307070",
-      deliveryTime: 37,
-      minDeliveryTime: 35,
-      maxDeliveryTime: 45,
-      lastMileTravel: 4,
-      lastMileDistance: 0,
-      serviceability: "SERVICEABLE_WITH_BANNER",
-      rainMode: "NONE",
-      longDistance: "NOT_LONG_DISTANCE",
-      preferentialService: false,
-      iconType: "EMPTY"
-    },
-    promoted: false,
-    avgRating: "4.2",
-    totalRatings: 50,
-    new: false
-  },
-  subtype: "basic"
-}, {
-  type: "restaurant",
-  data: {
-    type: "F",
-    id: "76858",
-    name: "Feeling Hungry",
-    uuid: "45f9ea54-f3cf-4f6b-8d85-e3468657fe51",
-    city: "21",
-    area: "Athwa",
-    totalRatingsString: "1000+ ratings",
-    cloudinaryImageId: "oxsb5mr1xsmhnxhunjsc",
-    cuisines: ["Chinese", "North Indian", "Biryani"],
-    tags: [],
-    costForTwo: 2000,
-    costForTwoString: "₹20 FOR TWO",
-    deliveryTime: 35,
-    minDeliveryTime: 30,
-    maxDeliveryTime: 40,
-    slaString: "30-40 MINS",
-    lastMileTravel: 3.700000047683716,
-    slugs: {
-      restaurant: "feeling-hungry-adajan-gam-adajan",
-      city: "surat"
-    },
-    cityState: "21",
-    address: "GF shop no 1, Babubhai Chambers, Beside Sardar Bridge , Athwagate, surat",
-    locality: "Royal Residency, Adajan Gam",
-    parentId: 79237,
-    unserviceable: true,
-    veg: true,
-    select: false,
-    favorite: false,
-    tradeCampaignHeaders: [],
-    aggregatedDiscountInfo: {
-      header: "FREE DELIVERY",
-      shortDescriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    aggregatedDiscountInfoV2: {
-      header: "",
-      shortDescriptionList: [{
-        meta: "Free Delivery",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    chain: [],
-    feeDetails: {
-      fees: [],
-      totalFees: 0,
-      message: "",
-      title: "",
-      amount: "",
-      icon: ""
-    },
-    availability: {
-      opened: true,
-      nextOpenMessage: "",
-      nextCloseMessage: ""
-    },
-    longDistanceEnabled: 0,
-    rainMode: "NONE",
-    thirdPartyAddress: false,
-    thirdPartyVendor: "",
-    adTrackingID: "",
-    badges: {
-      imageBased: [],
-      textBased: [],
-      textExtendedBadges: []
-    },
-    lastMileTravelString: "3.7 kms",
-    hasSurge: false,
-    sla: {
-      restaurantId: "76858",
-      deliveryTime: 35,
-      minDeliveryTime: 30,
-      maxDeliveryTime: 40,
-      lastMileTravel: 3.700000047683716,
-      lastMileDistance: 0,
-      serviceability: "SERVICEABLE_WITH_BANNER",
-      rainMode: "NONE",
-      longDistance: "NOT_LONG_DISTANCE",
-      preferentialService: false,
-      iconType: "EMPTY"
-    },
-    promoted: false,
-    avgRating: "3.2",
-    totalRatings: 1000,
-    new: false
-  },
-  subtype: "basic"
-}, {
-  type: "restaurant",
-  data: {
-    type: "F",
-    id: "617279",
-    name: "Malaxmi Fast Food",
-    uuid: "4848cb1b-b1c4-4a6e-9a6d-f96b781357db",
-    city: "21",
-    area: "Adajan",
-    totalRatingsString: "20+ ratings",
-    cloudinaryImageId: "agkm7cflq72tkualhstb",
-    cuisines: ["Fast Food", "Pizzas", "Snacks", "Beverages"],
-    tags: [],
-    costForTwo: 20000,
-    costForTwoString: "₹200 FOR TWO",
-    deliveryTime: 44,
-    minDeliveryTime: 40,
-    maxDeliveryTime: 50,
-    slaString: "40-50 MINS",
-    lastMileTravel: 9.100000381469727,
-    slugs: {
-      restaurant: "mahalaxmi-fast-food-adajan-adajan-2",
-      city: "surat"
-    },
-    cityState: "21",
-    address: "shop no 15,palanpur food zone,opp.sai trith,pal gam suart",
-    locality: "Palanpur Food Zone",
-    parentId: 373635,
-    unserviceable: true,
-    veg: false,
-    select: false,
-    favorite: false,
-    tradeCampaignHeaders: [],
-    aggregatedDiscountInfo: {
-      header: "FREE DELIVERY",
-      shortDescriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    aggregatedDiscountInfoV2: {
-      header: "",
-      shortDescriptionList: [{
-        meta: "Free Delivery",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    chain: [],
-    feeDetails: {
-      fees: [],
-      totalFees: 0,
-      message: "",
-      title: "",
-      amount: "",
-      icon: ""
-    },
-    availability: {
-      opened: true,
-      nextOpenMessage: "",
-      nextCloseMessage: ""
-    },
-    longDistanceEnabled: 0,
-    rainMode: "NONE",
-    thirdPartyAddress: false,
-    thirdPartyVendor: "",
-    adTrackingID: "",
-    badges: {
-      imageBased: [],
-      textBased: [],
-      textExtendedBadges: []
-    },
-    lastMileTravelString: "9.1 kms",
-    hasSurge: false,
-    sla: {
-      restaurantId: "617279",
-      deliveryTime: 44,
-      minDeliveryTime: 40,
-      maxDeliveryTime: 50,
-      lastMileTravel: 9.100000381469727,
-      lastMileDistance: 0,
-      serviceability: "SERVICEABLE_WITH_BANNER",
-      rainMode: "NONE",
-      longDistance: "NOT_LONG_DISTANCE",
-      preferentialService: false,
-      iconType: "EMPTY"
-    },
-    promoted: false,
-    avgRating: "4.0",
-    totalRatings: 20,
-    new: false
-  },
-  subtype: "basic"
-}, {
-  type: "restaurant",
-  data: {
-    type: "F",
-    id: "469264",
-    name: "Dessert House",
-    uuid: "7a320917-c577-49cb-875a-1e585a3adbc1",
-    city: "21",
-    area: "Piplod",
-    totalRatingsString: "Too Few Ratings",
-    cloudinaryImageId: "jegpumsjcmomksbr2sxr",
-    cuisines: ["Desserts", "Ice Cream"],
-    tags: [],
-    costForTwo: 15000,
-    costForTwoString: "₹150 FOR TWO",
-    deliveryTime: 27,
-    minDeliveryTime: 25,
-    maxDeliveryTime: 35,
-    slaString: "25-35 MINS",
-    lastMileTravel: 6.199999809265137,
-    slugs: {
-      restaurant: "dessert-house-piplod-piplod",
-      city: "surat"
-    },
-    cityState: "21",
-    address: "SHOP NO 2, MARVELLA CORRIDOR OPP. C B PATEL HEALTH CLUB V.I.P ROAD, VESU",
-    locality: "Piplod",
-    parentId: 71430,
-    unserviceable: true,
-    veg: false,
-    select: false,
-    favorite: false,
-    tradeCampaignHeaders: [],
-    aggregatedDiscountInfo: {
-      header: "FREE DELIVERY",
-      shortDescriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    aggregatedDiscountInfoV2: {
-      header: "",
-      shortDescriptionList: [{
-        meta: "Free Delivery",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    chain: [],
-    feeDetails: {
-      fees: [],
-      totalFees: 0,
-      message: "",
-      title: "",
-      amount: "",
-      icon: ""
-    },
-    availability: {
-      opened: true,
-      nextOpenMessage: "",
-      nextCloseMessage: ""
-    },
-    longDistanceEnabled: 0,
-    rainMode: "NONE",
-    thirdPartyAddress: false,
-    thirdPartyVendor: "",
-    adTrackingID: "",
-    badges: {
-      imageBased: [],
-      textBased: [],
-      textExtendedBadges: []
-    },
-    lastMileTravelString: "6.1 kms",
-    hasSurge: false,
-    sla: {
-      restaurantId: "469264",
-      deliveryTime: 27,
-      minDeliveryTime: 25,
-      maxDeliveryTime: 35,
-      lastMileTravel: 6.199999809265137,
-      lastMileDistance: 0,
-      serviceability: "SERVICEABLE_WITH_BANNER",
-      rainMode: "NONE",
-      longDistance: "NOT_LONG_DISTANCE",
-      preferentialService: false,
-      iconType: "EMPTY"
-    },
-    promoted: false,
-    avgRating: "4.5",
-    totalRatings: 0,
-    new: false
-  },
-  subtype: "basic"
-}, {
-  type: "restaurant",
-  data: {
-    type: "F",
-    id: "395204",
-    name: "McDonald's Gourmet Burger Collection",
-    uuid: "55c33a9b-bb51-4b9d-8c94-708d48b08ebd",
-    city: "21",
-    area: "Piplod",
-    totalRatingsString: "100+ ratings",
-    cloudinaryImageId: "wzbo5xivr8hstl0vxzcm",
-    cuisines: ["Burgers", "Beverages", "Cafe", "Desserts"],
-    tags: [],
-    costForTwo: 50000,
-    costForTwoString: "₹500 FOR TWO",
-    deliveryTime: 31,
-    minDeliveryTime: 30,
-    maxDeliveryTime: 40,
-    slaString: "30-40 MINS",
-    lastMileTravel: 8.199999809265137,
-    slugs: {
-      restaurant: "mcdonalds-gourmet-burger-collection-valentine-cinema-piplod",
-      city: "surat"
-    },
-    cityState: "21",
-    address: "MC Donalds Family Restaurant Valentine Mall Valentine Cine Vision Surat , Dhumas Road, Nr Govardhan Haveli, Surat 395007",
-    locality: "Valentine Cinema",
-    parentId: 10761,
-    unserviceable: true,
-    veg: false,
-    select: false,
-    favorite: false,
-    tradeCampaignHeaders: [],
-    aggregatedDiscountInfo: {
-      header: "FREE DELIVERY",
-      shortDescriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    aggregatedDiscountInfoV2: {
-      header: "",
-      shortDescriptionList: [{
-        meta: "Free Delivery",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    chain: [],
-    feeDetails: {
-      fees: [],
-      totalFees: 0,
-      message: "",
-      title: "",
-      amount: "",
-      icon: ""
-    },
-    availability: {
-      opened: true,
-      nextOpenMessage: "",
-      nextCloseMessage: ""
-    },
-    longDistanceEnabled: 0,
-    rainMode: "NONE",
-    thirdPartyAddress: false,
-    thirdPartyVendor: "",
-    adTrackingID: "",
-    badges: {
-      imageBased: [],
-      textBased: [],
-      textExtendedBadges: []
-    },
-    lastMileTravelString: "8.1 kms",
-    hasSurge: false,
-    sla: {
-      restaurantId: "395204",
-      deliveryTime: 31,
-      minDeliveryTime: 30,
-      maxDeliveryTime: 40,
-      lastMileTravel: 8.199999809265137,
-      lastMileDistance: 0,
-      serviceability: "SERVICEABLE_WITH_BANNER",
-      rainMode: "NONE",
-      longDistance: "NOT_LONG_DISTANCE",
-      preferentialService: false,
-      iconType: "EMPTY"
-    },
-    promoted: false,
-    avgRating: "4.2",
-    totalRatings: 100,
-    new: false
-  },
-  subtype: "basic"
-}, {
-  type: "restaurant",
-  data: {
-    type: "F",
-    id: "193541",
-    name: "Behrouz Biryani",
-    uuid: "abc2e9d1-df00-4449-bde3-4c35982d0ef3",
-    city: "21",
-    area: "Adajan Patiya",
-    totalRatingsString: "1000+ ratings",
-    cloudinaryImageId: "craozjakzx7sll2uracb",
-    cuisines: ["Biryani", "Mughlai", "Lucknowi", "Hyderabadi", "Kebabs", "North Indian", "Persian", "Desserts"],
-    tags: [],
-    costForTwo: 50000,
-    costForTwoString: "₹500 FOR TWO",
-    deliveryTime: 49,
-    minDeliveryTime: 45,
-    maxDeliveryTime: 55,
-    slaString: "45-55 MINS",
-    lastMileTravel: 6.400000095367432,
-    slugs: {
-      restaurant: "behrouz-biryani-adajan-adajan",
-      city: "surat"
-    },
-    cityState: "21",
-    address: "Chalta no 23, Ground Floor, Guru Ashish Building, Below Stallon Gym, Opp Kotyark Nagar, Near Navyug College, Adajan, Surat 395005",
-    locality: "Nr Navyug College, Rander Road",
-    parentId: 1803,
-    unserviceable: true,
-    veg: false,
-    select: false,
-    favorite: false,
-    tradeCampaignHeaders: [],
-    aggregatedDiscountInfo: {
-      header: "FREE DELIVERY",
-      shortDescriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    aggregatedDiscountInfoV2: {
-      header: "",
-      shortDescriptionList: [{
-        meta: "Free Delivery",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    chain: [],
-    feeDetails: {
-      fees: [],
-      totalFees: 0,
-      message: "",
-      title: "",
-      amount: "",
-      icon: ""
-    },
-    availability: {
-      opened: true,
-      nextOpenMessage: "",
-      nextCloseMessage: ""
-    },
-    longDistanceEnabled: 0,
-    rainMode: "NONE",
-    thirdPartyAddress: false,
-    thirdPartyVendor: "",
-    adTrackingID: "",
-    badges: {
-      imageBased: [],
-      textBased: [],
-      textExtendedBadges: []
-    },
-    lastMileTravelString: "6.4 kms",
-    hasSurge: false,
-    sla: {
-      restaurantId: "193541",
-      deliveryTime: 49,
-      minDeliveryTime: 45,
-      maxDeliveryTime: 55,
-      lastMileTravel: 6.400000095367432,
-      lastMileDistance: 0,
-      serviceability: "SERVICEABLE_WITH_BANNER",
-      rainMode: "NONE",
-      longDistance: "NOT_LONG_DISTANCE",
-      preferentialService: false,
-      iconType: "EMPTY"
-    },
-    promoted: false,
-    avgRating: "4.3",
-    totalRatings: 1000,
-    new: false
-  },
-  subtype: "basic"
-}, {
-  type: "restaurant",
-  data: {
-    type: "F",
-    id: "475510",
-    name: "Momos House",
-    uuid: "34320d9a-ffa7-450c-ad61-d50485306626",
-    city: "21",
-    area: "Piplod",
-    totalRatingsString: "Too Few Ratings",
-    cloudinaryImageId: "vmold2zualdrrypxcvue",
-    cuisines: ["Fast Food"],
-    tags: [],
-    costForTwo: 20000,
-    costForTwoString: "₹200 FOR TWO",
-    deliveryTime: 31,
-    minDeliveryTime: 30,
-    maxDeliveryTime: 40,
-    slaString: "30-40 MINS",
-    lastMileTravel: 6.199999809265137,
-    slugs: {
-      restaurant: "momo’s-house-piplod-piplod",
-      city: "surat"
-    },
-    cityState: "21",
-    address: "SHOP NO - 2, MARVELLA CORRIDOR, OPP. C B PATEL HEALTH CLUB, V.I.P. ROAD, Surat,, Vesu , Surat Municipal Corporation, Surat Municipal Corporation, Gujarat - 395007",
-    locality: "Vesu",
-    parentId: 15884,
-    unserviceable: true,
-    veg: false,
-    select: false,
-    favorite: false,
-    tradeCampaignHeaders: [],
-    aggregatedDiscountInfo: {
-      header: "FREE DELIVERY",
-      shortDescriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    aggregatedDiscountInfoV2: {
-      header: "",
-      shortDescriptionList: [{
-        meta: "Free Delivery",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    chain: [],
-    feeDetails: {
-      fees: [],
-      totalFees: 0,
-      message: "",
-      title: "",
-      amount: "",
-      icon: ""
-    },
-    availability: {
-      opened: true,
-      nextOpenMessage: "",
-      nextCloseMessage: ""
-    },
-    longDistanceEnabled: 0,
-    rainMode: "NONE",
-    thirdPartyAddress: false,
-    thirdPartyVendor: "",
-    adTrackingID: "",
-    badges: {
-      imageBased: [],
-      textBased: [],
-      textExtendedBadges: []
-    },
-    lastMileTravelString: "6.1 kms",
-    hasSurge: false,
-    sla: {
-      restaurantId: "475510",
-      deliveryTime: 31,
-      minDeliveryTime: 30,
-      maxDeliveryTime: 40,
-      lastMileTravel: 6.199999809265137,
-      lastMileDistance: 0,
-      serviceability: "SERVICEABLE_WITH_BANNER",
-      rainMode: "NONE",
-      longDistance: "NOT_LONG_DISTANCE",
-      preferentialService: false,
-      iconType: "EMPTY"
-    },
-    promoted: false,
-    avgRating: "4.1",
-    totalRatings: 0,
-    new: false
-  },
-  subtype: "basic"
-}, {
-  type: "restaurant",
-  data: {
-    type: "F",
-    id: "127596",
-    name: "Sabir Chicken",
-    uuid: "f0f49821-52ed-4435-9014-c845e964a3d8",
-    city: "21",
-    area: "Chowk Bazar",
-    totalRatingsString: "5000+ ratings",
-    cloudinaryImageId: "kilrdjqt8chduasii5ni",
-    cuisines: ["North Indian", "Biryani"],
-    tags: [],
-    costForTwo: 30000,
-    costForTwoString: "₹300 FOR TWO",
-    deliveryTime: 30,
-    minDeliveryTime: 25,
-    maxDeliveryTime: 35,
-    slaString: "25-35 MINS",
-    lastMileTravel: 4.300000190734863,
-    slugs: {
-      restaurant: "sabir-chicken-athwa-athwa",
-      city: "surat"
-    },
-    cityState: "21",
-    address: "Nehru Bridge, Behind Nagin Chand Hall, Chowk Bazar, Surat, Gujarat 395003",
-    locality: "Chowk Bazar",
-    parentId: 173978,
-    unserviceable: true,
-    veg: false,
-    select: false,
-    favorite: false,
-    tradeCampaignHeaders: [],
-    aggregatedDiscountInfo: {
-      header: "FREE DELIVERY",
-      shortDescriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    aggregatedDiscountInfoV2: {
-      header: "",
-      shortDescriptionList: [{
-        meta: "Free Delivery",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    chain: [],
-    feeDetails: {
-      fees: [],
-      totalFees: 0,
-      message: "",
-      title: "",
-      amount: "",
-      icon: ""
-    },
-    availability: {
-      opened: true,
-      nextOpenMessage: "",
-      nextCloseMessage: ""
-    },
-    longDistanceEnabled: 0,
-    rainMode: "NONE",
-    thirdPartyAddress: false,
-    thirdPartyVendor: "",
-    adTrackingID: "",
-    badges: {
-      imageBased: [],
-      textBased: [],
-      textExtendedBadges: []
-    },
-    lastMileTravelString: "4.3 kms",
-    hasSurge: false,
-    sla: {
-      restaurantId: "127596",
-      deliveryTime: 30,
-      minDeliveryTime: 25,
-      maxDeliveryTime: 35,
-      lastMileTravel: 4.300000190734863,
-      lastMileDistance: 0,
-      serviceability: "SERVICEABLE_WITH_BANNER",
-      rainMode: "NONE",
-      longDistance: "NOT_LONG_DISTANCE",
-      preferentialService: false,
-      iconType: "EMPTY"
-    },
-    promoted: false,
-    avgRating: "4.1",
-    totalRatings: 5000,
-    new: false
-  },
-  subtype: "basic"
-}, {
-  type: "restaurant",
-  data: {
-    type: "F",
-    id: "64656",
-    name: "Mahesh Pav Bhaji",
-    uuid: "ccfda4b9-82b1-4f22-9567-eb98c448b267",
-    city: "21",
-    area: "Adajan",
-    totalRatingsString: "10000+ ratings",
-    cloudinaryImageId: "84d3bea985f13bd980dc39c9c73bc87f",
-    cuisines: ["Desserts", "Chinese", "South Indian", "Ice Cream", "Pizzas"],
-    tags: [],
-    costForTwo: 25000,
-    costForTwoString: "₹250 FOR TWO",
-    deliveryTime: 36,
-    minDeliveryTime: 35,
-    maxDeliveryTime: 45,
-    slaString: "35-45 MINS",
-    lastMileTravel: 6.900000095367432,
-    slugs: {
-      restaurant: "mahesh-pav-bhaji-adajan-gam-adajan",
-      city: "surat"
-    },
-    cityState: "21",
-    address: "Shop 12, Garden View Apartment, Honey Park Road, Adajan Gam, Surat",
-    locality: "Adajan Gam",
-    parentId: 6553,
-    unserviceable: true,
-    veg: true,
-    select: false,
-    favorite: false,
-    tradeCampaignHeaders: [],
-    aggregatedDiscountInfo: {
-      header: "30% off",
-      shortDescriptionList: [{
-        meta: "30% off | Use JUMBO",
-        discountType: "Percentage",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "30% off up to ₹150 on orders above ₹400 | Use code JUMBO",
-        discountType: "Percentage",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    aggregatedDiscountInfoV2: {
-      header: "30% OFF",
-      shortDescriptionList: [{
-        meta: "Use JUMBO",
-        discountType: "Percentage",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "30% off up to ₹150 on orders above ₹400 | Use code JUMBO",
-        discountType: "Percentage",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    chain: [],
-    feeDetails: {
-      fees: [],
-      totalFees: 0,
-      message: "",
-      title: "",
-      amount: "",
-      icon: ""
-    },
-    availability: {
-      opened: true,
-      nextOpenMessage: "",
-      nextCloseMessage: ""
-    },
-    longDistanceEnabled: 0,
-    rainMode: "NONE",
-    thirdPartyAddress: false,
-    thirdPartyVendor: "",
-    adTrackingID: "",
-    badges: {
-      imageBased: [],
-      textBased: [],
-      textExtendedBadges: []
-    },
-    lastMileTravelString: "6.9 kms",
-    hasSurge: false,
-    sla: {
-      restaurantId: "64656",
-      deliveryTime: 36,
-      minDeliveryTime: 35,
-      maxDeliveryTime: 45,
-      lastMileTravel: 6.900000095367432,
-      lastMileDistance: 0,
-      serviceability: "SERVICEABLE_WITH_BANNER",
-      rainMode: "NONE",
-      longDistance: "NOT_LONG_DISTANCE",
-      preferentialService: false,
-      iconType: "EMPTY"
-    },
-    promoted: false,
-    avgRating: "4.1",
-    totalRatings: 10000,
-    new: false
-  },
-  subtype: "basic"
-}, {
-  type: "restaurant",
-  data: {
-    type: "F",
-    id: "255204",
-    name: "The Dango Cake Shop",
-    uuid: "dbfd3f3c-77a6-4979-96c4-ce9863e54cdc",
-    city: "21",
-    area: "Galaxy Circle",
-    totalRatingsString: "50+ ratings",
-    cloudinaryImageId: "mnvfpsoealkflze4e5qi",
-    cuisines: ["Bakery"],
-    tags: [],
-    costForTwo: 27000,
-    costForTwoString: "₹270 FOR TWO",
-    deliveryTime: 34,
-    minDeliveryTime: 30,
-    maxDeliveryTime: 40,
-    slaString: "30-40 MINS",
-    lastMileTravel: 7.699999809265137,
-    slugs: {
-      restaurant: "twisted-cake-live-cake-adajan-adajan",
-      city: "surat"
-    },
-    cityState: "21",
-    address: "44 La Victoria, galaxy circle pal Surat",
-    locality: "Galaxy Circle",
-    parentId: 207513,
-    unserviceable: true,
-    veg: false,
-    select: false,
-    favorite: false,
-    tradeCampaignHeaders: [],
-    aggregatedDiscountInfo: {
-      header: "FREE DELIVERY",
-      shortDescriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    aggregatedDiscountInfoV2: {
-      header: "",
-      shortDescriptionList: [{
-        meta: "Free Delivery",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    chain: [],
-    feeDetails: {
-      fees: [],
-      totalFees: 0,
-      message: "",
-      title: "",
-      amount: "",
-      icon: ""
-    },
-    availability: {
-      opened: true,
-      nextOpenMessage: "",
-      nextCloseMessage: ""
-    },
-    longDistanceEnabled: 0,
-    rainMode: "NONE",
-    thirdPartyAddress: false,
-    thirdPartyVendor: "",
-    adTrackingID: "",
-    badges: {
-      imageBased: [],
-      textBased: [],
-      textExtendedBadges: []
-    },
-    lastMileTravelString: "7.6 kms",
-    hasSurge: false,
-    sla: {
-      restaurantId: "255204",
-      deliveryTime: 34,
-      minDeliveryTime: 30,
-      maxDeliveryTime: 40,
-      lastMileTravel: 7.699999809265137,
-      lastMileDistance: 0,
-      serviceability: "SERVICEABLE_WITH_BANNER",
-      rainMode: "NONE",
-      longDistance: "NOT_LONG_DISTANCE",
-      preferentialService: false,
-      iconType: "EMPTY"
-    },
-    promoted: false,
-    avgRating: "4.2",
-    totalRatings: 50,
-    new: false
-  },
-  subtype: "basic"
-}, {
-  type: "restaurant",
-  data: {
-    type: "F",
-    id: "664656",
-    name: "Cheezylicious Cafe",
-    uuid: "5880e561-10ed-4f96-990b-2251e2f09c82",
-    city: "21",
-    area: "Piplod",
-    totalRatingsString: "Too Few Ratings",
-    cloudinaryImageId: "fda9ad56b9d62070fec105cd93693129",
-    cuisines: ["Cafe", "Fast Food", "Chinese", "Snacks", "Italian", "Mexican"],
-    tags: [],
-    costForTwo: 15000,
-    costForTwoString: "₹150 FOR TWO",
-    deliveryTime: 38,
-    minDeliveryTime: 35,
-    maxDeliveryTime: 45,
-    slaString: "35-45 MINS",
-    lastMileTravel: 7.599999904632568,
-    slugs: {
-      restaurant: "cheezylicious-cafe-piplod-piplod-2",
-      city: "surat"
-    },
-    cityState: "21",
-    address: "Shop no G10 ground floor, aagam square B/S Dream heritage, Canal road, Vesu",
-    locality: "Dream heritage",
-    parentId: 59292,
-    unserviceable: true,
-    veg: false,
-    select: false,
-    favorite: false,
-    tradeCampaignHeaders: [],
-    aggregatedDiscountInfo: {
-      header: "FREE DELIVERY",
-      shortDescriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    aggregatedDiscountInfoV2: {
-      header: "",
-      shortDescriptionList: [{
-        meta: "Free Delivery",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      descriptionList: [{
-        meta: "FREE DELIVERY",
-        discountType: "FREE_DELIVERY",
-        operationType: "RESTAURANT"
-      }],
-      subHeader: "",
-      headerType: 0,
-      superFreedel: ""
-    },
-    chain: [],
-    feeDetails: {
-      fees: [],
-      totalFees: 0,
-      message: "",
-      title: "",
-      amount: "",
-      icon: ""
-    },
-    availability: {
-      opened: true,
-      nextOpenMessage: "",
-      nextCloseMessage: ""
-    },
-    longDistanceEnabled: 0,
-    rainMode: "NONE",
-    thirdPartyAddress: false,
-    thirdPartyVendor: "",
-    adTrackingID: "",
-    badges: {
-      imageBased: [],
-      textBased: [],
-      textExtendedBadges: []
-    },
-    lastMileTravelString: "7.5 kms",
-    hasSurge: false,
-    sla: {
-      restaurantId: "664656",
-      deliveryTime: 38,
-      minDeliveryTime: 35,
-      maxDeliveryTime: 45,
-      lastMileTravel: 7.599999904632568,
-      lastMileDistance: 0,
-      serviceability: "SERVICEABLE_WITH_BANNER",
-      rainMode: "NONE",
-      longDistance: "NOT_LONG_DISTANCE",
-      preferentialService: false,
-      iconType: "EMPTY"
-    },
-    promoted: false,
-    avgRating: "3.9",
-    totalRatings: 0,
-    new: true
-  },
-  subtype: "basic"
-}];
-var _default = exports.default = restaurantList;
-},{}],"src/Components/Body.js":[function(require,module,exports) {
+var _default = exports.default = Shimmer;
+},{"react":"node_modules/react/index.js"}],"src/Components/Body.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30635,63 +29034,129 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
-var _Card = _interopRequireDefault(require("./Card"));
-var _mock = _interopRequireDefault(require("../utils/mock"));
+var _Card = require("./Card");
+var _Shimmer = _interopRequireDefault(require("./Shimmer"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator.return && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, catch: function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; } // const Body = () => {
-//     // Assuming restaurantList is defined somewhere in your code
-//     const cards = []; // Initialize an empty array to store Card components
-//     // Loop through the restaurantList array and push Card components to the cards array
-//     for (let i = 0; i < restaurantList.length; i++) {
-//         cards.push(<Card key={i} resData={restaurantList[i]} />);
-//     }
-//     return (
-//         <div className="Body">
-//             <div className="search">Search</div>
-//             <div className="Res-Container">
-//                 {cards}
-//             </div>
-//         </div>
-//     );
-// }; by using for loops 
-// if both ARE IN same directory no need to add components 
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; } // if both ARE IN same directory no need to add whole path 
+// import restaurantList from "../utils/mock";
 // RestaurantList is JSON Data for displaying cards
 
 var Body = function Body() {
-  var _useState = (0, _react.useState)(_mock.default),
+  var _useState = (0, _react.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     listofResturent = _useState2[0],
     setlistofRestaurent = _useState2[1];
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "Body"
-  }, /*#__PURE__*/_react.default.createElement("div", {
+  var _useState3 = (0, _react.useState)([]),
+    _useState4 = _slicedToArray(_useState3, 2),
+    FilterlistofResturent = _useState4[0],
+    setFilterlistofRestaurent = _useState4[1];
+  var _useState5 = (0, _react.useState)([]),
+    _useState6 = _slicedToArray(_useState5, 2),
+    searchText = _useState6[0],
+    setsearchText = _useState6[1];
+  // whenever state variables update,react triggers a reconciliation cycle(re-renders the component)
+  (0, _react.useEffect)(function () {
+    fetchData();
+  }, []);
+  var fetchData = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var _json$data, _json$data2;
+      var data, json;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return fetch("https://www.swiggy.com/dapi/restaurants/list/v5/?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING");
+          case 2:
+            data = _context.sent;
+            _context.next = 5;
+            return data.json();
+          case 5:
+            json = _context.sent;
+            // optional Chaining 
+            setlistofRestaurent(json === null || json === void 0 || (_json$data = json.data) === null || _json$data === void 0 || (_json$data = _json$data.cards[4].card) === null || _json$data === void 0 || (_json$data = _json$data.card) === null || _json$data === void 0 || (_json$data = _json$data.gridElements) === null || _json$data === void 0 || (_json$data = _json$data.infoWithStyle) === null || _json$data === void 0 ? void 0 : _json$data.restaurants);
+            setFilterlistofRestaurent(json === null || json === void 0 || (_json$data2 = json.data) === null || _json$data2 === void 0 || (_json$data2 = _json$data2.cards[4].card) === null || _json$data2 === void 0 || (_json$data2 = _json$data2.card) === null || _json$data2 === void 0 || (_json$data2 = _json$data2.gridElements) === null || _json$data2 === void 0 || (_json$data2 = _json$data2.infoWithStyle) === null || _json$data2 === void 0 ? void 0 : _json$data2.restaurants);
+          case 8:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    }));
+    return function fetchData() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  // console.log(listofResturent.length);
+  // Conditional Rendering 
+  //     if(listofResturent.length == 0){
+  //         return <Shimmer/>
+  //    }
+
+  return listofResturent.length == 0 ? /*#__PURE__*/_react.default.createElement(_Shimmer.default, null) : /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "search"
-  }, /*#__PURE__*/_react.default.createElement("button", {
+  }, /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    className: "search-box",
+    value: searchText,
+    onChange: function onChange(e) {
+      setsearchText(e.target.value);
+    }
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: function onClick() {
+      console.log(searchText);
+      var filteredRestaurent = listofResturent.filter(function (a) {
+        var _a$info;
+        return a === null || a === void 0 || (_a$info = a.info) === null || _a$info === void 0 ? void 0 : _a$info.name.toLowerCase().includes(searchText.toLowerCase());
+      });
+      setFilterlistofRestaurent(filteredRestaurent);
+      //  setlistofRestaurent(filteredRestaurent);
+    }
+  }, "Search"), /*#__PURE__*/_react.default.createElement("button", {
     className: "search-btn",
     onClick: function onClick() {
+      // console.log(listofResturent);
       var filteredlist = listofResturent.filter(function (a) {
-        return a.data.avgRating > 4;
-      });
-      setlistofRestaurent(filteredlist);
+        var _a$info2;
+        return ((_a$info2 = a.info) === null || _a$info2 === void 0 ? void 0 : _a$info2.avgRating) > 4;
+      }); // optional chaning is very crucial 
+      if (filteredlist.length > 0) {
+        setlistofRestaurent(filteredlist);
+      } else {
+        console.log("No Restaurants Available with rating greater than 4");
+      }
     }
   }, "Top Rated Restaurent")), /*#__PURE__*/_react.default.createElement("div", {
-    className: "Res-Container"
-  }, listofResturent.map(function (a) {
-    return /*#__PURE__*/_react.default.createElement(_Card.default, {
-      key: a.id,
-      resData: a
-    });
+    className: "card-container"
+  }, FilterlistofResturent.map(function (ele) {
+    // for searching twice and thrice in search tab we have changed array 
+    // console.log(ele?.info);
+    return /*#__PURE__*/_react.default.createElement(_Card.Card, _extends({
+      key: ele.info.id
+    }, ele.info)) // spread operator in JavaScript // key for unique props 
+    ;
   })));
 };
-var _default = exports.default = Body;
-},{"react":"node_modules/react/index.js","./Card":"src/Components/Card.js","../utils/mock":"src/utils/mock.js"}],"src/App.js":[function(require,module,exports) {
+var _default = exports.default = Body; // spread operator in JavaScript allows an iterable such as an array or an object expression to be expanded in places where zero or more arguments or elements are expected.
+// {...ele.info} spreads out all the properties of the info object into individual props for the Card component.
+// For example, if ele.info has properties like name, address, and rating, using {...ele.info} will pass these properties as individual props to the Card component.
+// useEffect:
+// This hook is used to perform side effects in functional components. 
+// It takes a function as its first argument, which will be executed after the component renders. It can also take an optional second argument, an array of dependencies. 
+// If provided, the effect will only be re-executed if one of the dependencies has changed.
+},{"react":"node_modules/react/index.js","./Card":"src/Components/Card.js","./Shimmer":"src/Components/Shimmer.js"}],"src/App.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -30735,7 +29200,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64772" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59393" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

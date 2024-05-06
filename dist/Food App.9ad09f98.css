@@ -25,9 +25,7 @@
     padding:10px ;
     margin:10px ;
 }
-.search{
-    padding : 10px ; 
-}
+
 
 .Res-Container{
     display:flex ;
@@ -36,22 +34,60 @@
     
 }
 .card{
-    background-color: #130b0b;
+    background-color:#f0f0f0;
     padding : 5px ;
     margin: 5px;
+    margin-bottom:15px;
     width:350px;
     border: 1px solid black;
+    
+}
+.card-container{
+    display: flex;
+    flex-wrap: wrap;
+    margin :30px ;
+    justify-content: space-evenly;
+    padding:5px ;
+    
 }
 .card :hover{
     cursor : pointer ;
     border:black;
 }
 .card-photo{
-    width : 300px;
+    display: flex;
+    flex-wrap: wrap;
+    width : 350px;
     height: 200px; 
-
+}
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.shimmer-cardr{
+    margin : 20px;
+    width : 200px ;
+    height : 400px ;
+    background-color: #f0f0f0;
 }
 
+.header-login{
+    padding: 5px;
+    margin-right: 15px ;
+    cursor:grabbing;    
+}
 
+.search{
+    display: flex;
+    margin: 10px;
+    padding : 10px ; 
+    height:50px;
+}
+
+.search-btn{
+    height: 50px;
+    margin-left:100px;
+    cursor: pointer;
+}
 
 /*# sourceMappingURL=/Food%20App.9ad09f98.css.map */

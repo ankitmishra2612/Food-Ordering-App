@@ -16,3 +16,21 @@ Footer
     Address
     Contact
 */
+
+ <!-- const Body = () => {
+     // Assuming restaurantList is defined somewhere in your code
+     const cards = []; // Initialize an empty array to store Card components
+     // Loop through the restaurantList array and push Card components to the cards array
+     for (let i = 0; i < restaurantList.length; i++) {
+         cards.push(<Card key={i} resData={restaurantList[i]} />);
+     
+     return (
+         <div className="Body">
+             <div className="search">Search</div>
+             <div className="Res-Container">
+                 {cards}
+             </div>
+         </div>
+     );
+ }; by using for loops  -->
+

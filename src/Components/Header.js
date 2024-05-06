@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react"
 
 const Header = () =>{
+   const[Login,setLogin] = useState("login") ; 
     return(
         <div className="header">
             <img className="image"
@@ -13,9 +14,11 @@ const Header = () =>{
                    <li>About us </li> 
                    <li>Contact</li> 
                    <li>Cart</li>
+                   <button className="header-login" onClick={()=>{(Login==="login") ? setLogin("logout") :setLogin("login")} }>{Login}</button> 
                 </ul>
             </div>
         </div>
     )
-};
+}
+
 export default Header ;
