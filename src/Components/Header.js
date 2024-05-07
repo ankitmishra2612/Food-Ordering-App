@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Link } from "react-router-dom";
 
 const Header = () =>{
    const[Login,setLogin] = useState("login") ; 
@@ -10,9 +11,9 @@ const Header = () =>{
                />
             <div className="list">
                 <ul>
-                   <li>Home</li> 
-                   <li>About us </li> 
-                   <li>Contact</li> 
+                   <li><Link to="/">Home</Link></li> 
+                   <li><Link to="/about">About</Link></li> 
+                   <li><Link to="/contact">Contact</Link></li> 
                    <li>Cart</li>
                    <button className="header-login" onClick={()=>{(Login==="login") ? setLogin("logout") :setLogin("login")} }>{Login}</button> 
                 </ul>
@@ -22,3 +23,7 @@ const Header = () =>{
 }
 
 export default Header ;
+
+// <Link to="/contact">Contact</Link> link is a superpower given by 
+// react-router-dom reloading doesnot happen here 
+//  <a href=""> </a>  anchor tag m reloading hota 

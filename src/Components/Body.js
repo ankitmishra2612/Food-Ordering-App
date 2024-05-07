@@ -3,12 +3,14 @@ import { Card } from "./Card" ; // if both ARE IN same directory no need to add 
 // import restaurantList from "../utils/mock";
 import { useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 // RestaurantList is JSON Data for displaying cards
 
 const Body = ()=>{
-    const[listofResturent,setlistofRestaurent] = useState([]);
-    const[FilterlistofResturent,setFilterlistofRestaurent] = useState([]);
-
+    const[listofResturant,setlistofRestaurent] = useState([]);
+    const[FilterlistofResturant,setFilterlistofRestaurent] = useState([]);
+    // logic for filter condition we have taken two arrays the first one is use for
+    // searching(filter) and we update second one with the help of it and if we are again searching we will use first(original array) 
     const[searchText,setsearchText] = useState([]);
   // whenever state variables update,react triggers a reconciliation cycle(re-renders the component)
     useEffect(()=>{
@@ -24,13 +26,13 @@ const Body = ()=>{
       setFilterlistofRestaurent(json?.data?.cards[4].card?.card?.gridElements?.infoWithStyle?.restaurants);
     };
 
-    // console.log(listofResturent.length);
+    // console.log(listofResturant.length);
     // Conditional Rendering 
-//     if(listofResturent.length == 0){
+//     if(listofResturant.length == 0){
 //         return <Shimmer/>
 //    }
     
-    return listofResturent.length == 0 ? (<Shimmer/> ): (
+    return listofResturant.length == 0 ? (<Shimmer/> ): (
         <div>
          <div className="search">
             <input type="text" 
@@ -43,8 +45,8 @@ const Body = ()=>{
             <button
               onClick={()=>{
                  console.log(searchText); 
-                 const filteredRestaurent = listofResturent.filter((a)=>a?.info?.name.toLowerCase().includes(searchText.toLowerCase()));
-                 setFilterlistofRestaurent(filteredRestaurent);
+                 const filteredR = listofResturant.filter((a)=>a?.info?.name.toLowerCase().includes(searchText.toLowerCase()));
+                 setFilterlistofRestaurent(filteredR); // for search condition 
              //  setlistofRestaurent(filteredRestaurent);
               }}
             >
@@ -53,22 +55,24 @@ const Body = ()=>{
 
             <button className="search-btn"  
             onClick={()=>{ 
-               // console.log(listofResturent);
-                const filteredlist = listofResturent.filter((a)=>a.info?.avgRating > 4); // optional chaning is very crucial 
+               // console.log(listofResturant);
+                const filteredlist = listofResturant.filter((a)=>a.info?.avgRating > 4); // optional chaning is very crucial 
                     if (filteredlist.length > 0) {
-                        setlistofRestaurent(filteredlist);
+                        setFilterlistofRestaurent(filteredlist);
                     } else {
                         console.log("No Restaurants Available with rating greater than 4"); 
                     }
                 }}
-            >Top Rated Restaurent</button> 
+            >Top Rated Restaurant</button> 
           </div>
         <div className="card-container"> 
         {
-            FilterlistofResturent.map((ele)=>{  // for searching twice and thrice in search tab we have changed array 
+            FilterlistofResturant.map((ele)=>{  // for searching twice and thrice in search tab we have changed array 
                // console.log(ele?.info);
                 return (
-               <Card key={ele.info.id} {...ele.info}/> // spread operator in JavaScript // key for unique props 
+                  <Link key={ele.info.id} to={"/restaurant/" + ele.info.id}><Card  {...ele.info}/></Link>
+                  // used link here to click on every card and redirect to restaurent card 
+                // spread operator in JavaScript // key for unique props 
             )
             }) 
         }
@@ -79,7 +83,7 @@ const Body = ()=>{
 }
 export default Body ;
 
-
+// link is given by react-router-dom and behind the scenes it is using <a> anchor tag  // link keeps track on anchor tag 
 // spread operator in JavaScript allows an iterable such as an array or an object expression to be expanded in places where zero or more arguments or elements are expected.
 // {...ele.info} spreads out all the properties of the info object into individual props for the Card component.
 // For example, if ele.info has properties like name, address, and rating, using {...ele.info} will pass these properties as individual props to the Card component.
