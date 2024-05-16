@@ -1,161 +1,35 @@
-/*
-Header 
-    Logo
-    Navitem
-Body 
-    Search
-    Restaurent Container
-        Card
-          Img 
-          Name of Restaurant 
-          Cusion 
-          Delivery Time 
-Footer
-    Copyright
-    Links
-    Address
-    Contact
-*/
+Namaste-React
+This repository contains all the learnings and notes I created while learning React JS from #Namaste-React Course, food studio is a project, built while learning the concepts.
 
- /* <!-- const Body = () => {
-     // Assuming restaurantList is defined somewhere in your code
-     const cards = []; // Initialize an empty array to store Card components
-     // Loop through the restaurantList array and push Card components to the cards array
-     for (let i = 0; i < restaurantList.length; i++) {
-         cards.push(<Card key={i} resData={restaurantList[i]} />);
-     
-     return (
-         <div className="Body">
-             <div className="search">Search</div>
-             <div className="Res-Container">
-                 {cards}
-             </div>
-         </div>
-     );
- }; by using for loops  --> */
+Food-Studio
+Order food from the confort of your home, we show the latest restaurants available in your city, with all the details. Pick a dish, add to cart, place order, get delivered.
 
+Tech - Stack
+Frontend Library: React JS
+Styling: Tailwind CSS
+Database: Firebase
+Bundler: Parcel
+Authentication: Firebase-Auth
+State Management: Redux Toolkit
 
-/*
-.header{
-    display: flex; 
-    justify-content:space-between;
-    border: 1px solid black;
- }
- .image {
-    width: 100px;
-    height: 100px; 
-    padding : 15px ;
-}  
+Working of project
+We fetch the restaurants of your city from Swiggy API, getting the live data.
+Display them with Area name, Cuisines Category and Ratings.
+Search Restaurants by Name.
+For any restaurant, you can checkout all the different type of dishes available with details and prices per quantity.
+Add to cart
+Authenticate yourself
+Place Order.
 
-.logo{
-    width:"80px" ;
-    height:"80px"; 
-    padding:"15px" ;
-}
-.list > ul{
-    font-size:24px;
-    display:flex ;
-    list-style-type:none;
-}
+Improvements to make
+Not responsive for Mobile phones
+Cart data is not stored anywhere, it should be in local storage for not logged in users to avoid losing on refresh page.
+While Signing up, user name is not displayed in the profile point instantly, needs a refresh. It doesn't happen in logging in process.
+Improve the design, take user address and payment details.
+Add feature to search different cities, currently working for Prayagraj only.
 
-.list > ul > li {
-    padding:10px ;
-    margin:10px ;
-}
-
-
-.Res-Container{
-    display:flex ;
-    padding:5px;
-    flex-wrap: wrap;
-    
-}
-.card{
-    background-color:#f0f0f0;
-    padding : 5px ;
-    margin: 5px;
-    margin-bottom:15px;
-    width:350px;
-    border: 1px solid black;
-    
-}
-.card-container{
-    display: flex;
-    flex-wrap: wrap;
-    margin :30px ;
-    justify-content: space-evenly;
-    padding:5px ;
-    
-}
-.card :hover{
-    cursor : pointer ;
-    border:black;
-}
-.card-photo{
-    display: flex;
-    flex-wrap: wrap;
-    width : 350px;
-    height: 200px; 
-}
-.shimmer-container{
-    display: flex;
-    flex-wrap: wrap;
-}
-.shimmer-cardr{
-    margin : 20px;
-    width : 200px ;
-    height : 400px ;
-    background-color: #f0f0f0;
-}
-
-.header-login{
-    padding: 5px;
-    margin-right: 15px ;
-    cursor:grabbing;    
-}
-
-.search{
-    display: flex;
-    margin: 10px;
-    padding : 10px ; 
-    height:50px;
-}
-
-.search-btn{
-    height: 50px;
-    margin-left:100px;
-    cursor: pointer;
-}
-
-.user{
-    background-color: #f0f0f0;
-    border: 1px ;
-    padding: 5px;
-} */
-
-/* // how to put map function 
-//  {(ARRAYNAME).map(()=>(
-//    andar m curve bracket aata h 
-//  ))}
-
-
-// return (
-//   <div className=""> 
-//       <h1 className="font-bold">MENU</h1>
-
-//         {resInfo?.cards?.[1]?.card?.card?.itemCards?.map((a)=>(
-//            <div className="" key={a?.card?.info?.id}>
-//               <h3>{a?.card?.info?.name}</h3>
-//               {(a?.card?.info?.price)/100}
-//            </div> ))} 
-
-//   {/* <h1>{resInfo?.itemCards[0]?.card?.info?.name}</h1>
-//   <h1>{resInfo?.itemCards[1]?.card?.info?.name}</h1>
-//   <h1>{resInfo?.itemCards[5]?.card?.info?.name}</h1> 
-
-
-//    <h1>Restaurant Id : {resId}</h1> 
-  
-//  </div>
-
-// ) */
+How to run on your local
+Clone the repository
+Run npm init
+Run npm start.
+Make sure you've allow CORS extension installed in your browser.
